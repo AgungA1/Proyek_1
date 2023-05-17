@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/nav', function(){
-    return view('layouts.navbar');
+    return view('layouts.main');
 });
 
 require __DIR__.'/auth.php';

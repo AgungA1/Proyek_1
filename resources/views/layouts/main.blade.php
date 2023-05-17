@@ -11,12 +11,13 @@
 </head>
 
 <body>
-    @yield('content')
+    @include('layouts.navbar')
+    @include('layouts.sidebar')
     <!-- Wrapper -->
     <div class="p-4 sm:ml-64"> 
         <!-- Content Warapper -->
         <div class="p-4 mt-14">
-            
+            @yield('content')
         </div>
     </div>
 </body>
