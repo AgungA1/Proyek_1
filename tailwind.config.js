@@ -5,6 +5,7 @@ module.exports = {
     daisyui: {
         themes: [
           {
+            
             mytheme: {
 
                 "primary": "#063777",

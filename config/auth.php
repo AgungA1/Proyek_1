@@ -17,6 +17,18 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'admin'=>[
+        'driver'=>'eloquent',
+        'model'=>App\Models\Auth\Admin::class,
+     ],
+    'estimator'=>[
+        'driver'=>'eloquent',
+        'model'=>App\Models\Auth\Estimator::class,
+     ],
+    'staf_gudang'=>[
+        'driver'=>'eloquent',
+        'model'=>App\Models\Auth\StafGudang::class,
+     ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +51,18 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'estimator' => [
+            'driver' => 'session',
+            'provider' => 'estimators',
+        ],
+        'staf_gudang' => [
+            'driver' => 'session',
+            'provider' => 'staf_gudangs',
         ],
     ],
 
@@ -64,6 +88,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'admins'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\Admin::class,
+         ],
+        'estimators'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\Estimator::class,
+         ],
+        'staf_gudangs'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\StafGudang::class,
+         ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -93,6 +129,18 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admins'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\Admin::class,
+         ],
+        'estimators'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\Estimator::class,
+         ],
+        'staf_gudangs'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Auth\StafGudang::class,
+         ],
     ],
 
     /*
