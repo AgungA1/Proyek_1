@@ -24,7 +24,7 @@
             </div>
 
             <div class="w-full h-screen md:w-auto justify-center flex items-center bg-white">
-                <img src="{{ asset('/img/IMG_20230504_201228_456.PNG') }}" alt="" srcset="">
+                <img src="{{ asset('/img/logo2blue.PNG') }}" alt="" srcset="">
             </div>
 
         </div>

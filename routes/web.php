@@ -34,3 +34,9 @@ Route::get('/nav', function(){
 });
 
 require __DIR__.'/auth.php';
+
+require __DIR__.'/admin.php';
+
+require __DIR__.'/estimator.php';
+
+require __DIR__.'/staf.php';

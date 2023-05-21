@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
-            $table->string('username_admin');
-            $table->string('nama_admin');
-            $table->string('email_admin')->unique();
-            $table->string('no_telp_admin');
-            $table->string('avatar_admin');
-            $table->string('password_admin');
+            $table->string('username');
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('no_telp');
+            $table->string('avatar')->default('default.jpg');
+            $table->string('password');
             $table->rememberToken();
         });
     }
