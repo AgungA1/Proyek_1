@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('no_telp');
-            $table->string('avatar');
+            $table->string('avatar')->default('default.jpg');
             $table->string('password');
             $table->rememberToken();
         });
