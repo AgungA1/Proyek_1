@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('staf_gudang', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_gudang');
-            $table->string('username_staf');
-            $table->string('nama_staf');
-            $table->string('email_staf')->unique();
-            $table->string('no_telp_staf');
-            $table->string('avatar_staf');
-            $table->string('password_staf');
+            $table->unsignedBigInteger('id');
+            $table->string('username');
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('no_telp');
+            $table->string('avatar')->default('default.jpg');
+            $table->string('password');
             $table->rememberToken();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staf_gudang');
+        Schema::dropIfExists('staf');
     }
 };
