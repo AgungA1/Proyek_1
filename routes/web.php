@@ -28,9 +28,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/auth.php';
 
-Route::get('/nav', function(){
+Route::get('/navadmin', function(){
+    return view('admin.layouts.main');
+});
+
+Route::get('/navglobal', function(){
     return view('layouts.main');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/navestimator', function(){
+    return view('estimator.layouts.main');
+});
+
+Route::get('/navstaf', function(){
+    return view('staf.layouts.main');
+});
+
+
