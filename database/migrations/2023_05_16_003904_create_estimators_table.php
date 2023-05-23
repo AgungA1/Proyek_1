@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('estimator', function (Blueprint $table) {
             $table->id();
-            $table->string('username_estimator');
-            $table->string('nama_estimator');
-            $table->string('email_estimator')->unique();
-            $table->string('no_telp_estimator');
-            $table->string('avatar_estimator');
-            $table->string('password_estimator');
+            $table->string('username');
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('no_telp');
+            $table->string('avatar')->default('default.jpg');
+            $table->string('password');
             $table->rememberToken();
         });
     }

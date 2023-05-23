@@ -19,15 +19,15 @@ return [
     ],
     'admin'=>[
         'driver'=>'eloquent',
-        'model'=>App\Models\Auth\Admin::class,
+        'model'=>App\Models\Admin::class,
      ],
     'estimator'=>[
         'driver'=>'eloquent',
-        'model'=>App\Models\Auth\Estimator::class,
+        'model'=>App\Models\Estimator::class,
      ],
     'staf_gudang'=>[
         'driver'=>'eloquent',
-        'model'=>App\Models\Auth\StafGudang::class,
+        'model'=>App\Models\StafGudang::class,
      ],
 
     /*
@@ -90,15 +90,15 @@ return [
         ],
         'admins'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\Admin::class,
+            'model'=>App\Models\Admin::class,
          ],
         'estimators'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\Estimator::class,
+            'model'=>App\Models\Estimator::class,
          ],
         'staf_gudangs'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\StafGudang::class,
+            'model'=>App\Models\StafGudang::class,
          ],
 
         // 'users' => [
@@ -131,15 +131,15 @@ return [
         ],
         'admins'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\Admin::class,
+            'model'=>App\Models\Admin::class,
          ],
         'estimators'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\Estimator::class,
+            'model'=>App\Models\Estimator::class,
          ],
         'staf_gudangs'=>[
             'driver'=>'eloquent',
-            'model'=>App\Models\Auth\StafGudang::class,
+            'model'=>App\Models\StafGudang::class,
          ],
     ],
 

@@ -38,12 +38,10 @@ Route::get('/navglobal', function(){
     return view('layouts.main');
 });
 
-Route::get('/navestimator', function(){
-    return view('estimator.layouts.main');
-});
+require __DIR__.'/auth.php';
 
-Route::get('/navstaf', function(){
-    return view('staf.layouts.main');
-});
+require __DIR__.'/admin.php';
 
+require __DIR__.'/estimator.php';
 
+require __DIR__.'/staf.php';
