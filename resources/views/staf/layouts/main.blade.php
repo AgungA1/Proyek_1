@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    @include('layouts.navbar')
-    @include('layouts.sidebar')
+    @include('staf_gudang.layouts.navbar')
+    @include('staf_gudang.layouts.sidebar')
     <!-- Wrapper -->
     <div class="p-4 sm:ml-64"> 
         <!-- Content Warapper -->

@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    @include('layouts.navbar')
-    @include('layouts.sidebar')
+    @include('estimator.layouts.navbar')
+    @include('estimator.layouts.sidebar')
     <!-- Wrapper -->
     <div class="p-4 sm:ml-64"> 
         <!-- Content Warapper -->
