@@ -17,4 +17,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    
+    Route::get('request', );
 })->middleware('auth:admin');

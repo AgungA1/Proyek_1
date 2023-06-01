@@ -18,7 +18,7 @@
 
         <div class="grid grid-cols-2 grid-rows-1 gap-0">
             <div class="w-full h-screen md:w-auto justify-center flex items-center bg-primary ">
-                <div class="w-full sm:max-w-lg mt-6 px-8 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                     {{ $slot }}
                 </div>
             </div>
