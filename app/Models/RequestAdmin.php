@@ -14,6 +14,7 @@ class RequestAdmin extends Model
      * @var string
      */
     protected $table = 'request_admin';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +23,7 @@ class RequestAdmin extends Model
      */
     protected $fillable = [
         'kode_barang',
+        'id_kategori',
         'nama_barang',
         'kuantitas_barang',
         'jenis_request',

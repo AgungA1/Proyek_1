@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
+use App\Http\Controllers\RequestAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', function () {
@@ -18,5 +19,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
     
-    Route::get('request', );
-})->middleware('auth:admin');
+    Route::resource('request', RequestAdminController::class);
+})->middleware(['auth:admin', 'verified']);

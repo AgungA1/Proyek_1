@@ -14,6 +14,7 @@ class Gudang extends Model
      * @var string
      */
     protected $table = 'gudang';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

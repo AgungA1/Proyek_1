@@ -14,6 +14,7 @@ class Kategori extends Model
      * @var string
      */
     protected $table = 'kategori';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
