@@ -17,6 +17,7 @@ class Admin extends Authenticatable
      * @var string
      */
     protected $table = 'admin';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

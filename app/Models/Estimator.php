@@ -17,6 +17,7 @@ class Estimator extends Authenticatable
      * @var string
      */
     protected $table = 'estimator';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

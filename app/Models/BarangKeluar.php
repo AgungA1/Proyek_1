@@ -14,6 +14,7 @@ class BarangKeluar extends Model
      * @var string
      */
     protected $table = 'barang_keluar';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

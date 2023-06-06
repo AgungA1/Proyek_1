@@ -16,12 +16,13 @@ return new class extends Migration
     {
         Schema::create('request_admin', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kode_barang');
+            $table->unsignedBigInteger('kode_barang')->nullable();
+            $table->unsignedBigInteger('id_kategori')->nullable();
             $table->string('nama_barang')->nullable();
-            $table->integer('kuantitas_barang')->nullable();
+            $table->integer('kuantitas_barang');
             $table->string('jenis_request');
             $table->string('status_request');
-            $table->boolean('status_penyelesaian')->default(0);
+            $table->string('status_penyelesaian');
         });
     }
 

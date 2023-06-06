@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('request_admin', function (Blueprint $table) {        
             $table->foreign('kode_barang')->references('id')->on('barang');
+            $table->foreign('id_kategori')->references('id')->on('kategori');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('request_admin', function (Blueprint $table) {        
             $table->dropForeign('kode_barang');
+            $table->dropForeign('id_kategori');
         });
     }
 };
