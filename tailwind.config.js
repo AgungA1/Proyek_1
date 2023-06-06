@@ -5,7 +5,7 @@ module.exports = {
     daisyui: {
         themes: [
           {
-            
+
             mytheme: {
 
                 "primary": "#063777",
@@ -45,6 +45,9 @@ module.exports = {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        colors:{
+
+        }
     },
 
     plugins: [
