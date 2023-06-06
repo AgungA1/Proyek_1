@@ -24,12 +24,12 @@ class Estimator extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username_estimator',
-        'nama_estimator',
-        'email_estimator',
-        'no_telp_estimator',
-        'avatar_estimator',
-        'password_estimator',
+        'username',
+        'nama',
+        'email',
+        'no_telp',
+        'avatar',
+        'password',
     ];
 
     /**

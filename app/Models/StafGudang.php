@@ -24,12 +24,12 @@ class StafGudang extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username_staf',
-        'nama_staf',
-        'email_staf',
-        'no_telp_staf',
-        'avatar_staf',
-        'password_staf',
+        'username',
+        'nama',
+        'email',
+        'no_telp',
+        'avatar',
+        'password',
     ];
 
     /**

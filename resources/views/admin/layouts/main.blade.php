@@ -8,16 +8,19 @@
     <title>Tes</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>
     @include('admin.layouts.navbar')
     @include('admin.layouts.sidebar')
     <!-- Wrapper -->
-    <div class="p-4 sm:ml-64"> 
+    <div class="p-4 sm:ml-64">
         <!-- Content Warapper -->
         <div class="p-4 mt-14">
             <!-- Content -->
+            @yield('content')
+            @yield('script')
         </div>
     </div>
 </body>
