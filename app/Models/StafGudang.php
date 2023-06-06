@@ -17,6 +17,7 @@ class StafGudang extends Authenticatable
      * @var string
      */
     protected $table = 'staf_gudang';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

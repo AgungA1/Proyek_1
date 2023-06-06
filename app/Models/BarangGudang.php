@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RequestEstimator extends Model
+class BarangGudang extends Model
 {
     use HasFactory;
     /**
@@ -13,7 +13,7 @@ class RequestEstimator extends Model
      *
      * @var string
      */
-    protected $table = 'request_estimator';
+    protected $table = 'barang_masuk';
     public $timestamps = false;
 
     /**
@@ -22,9 +22,8 @@ class RequestEstimator extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama_barang',
+        'id_gudang',
+        'kode_barang',
         'kuantitas_barang',
-        'tgl_pengadaan',
-        'status_request',
     ];
 }

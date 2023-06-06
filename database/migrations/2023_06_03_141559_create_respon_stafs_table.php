@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('staf_gudang', function (Blueprint $table) {
+        Schema::create('respon_staf', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_gudang');
-            $table->string('username');
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('no_telp');
-            $table->string('avatar')->default('default.png');
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('id_request');
+            $table->string('persetujuan');
+            $table->integer('kuantitas')->nullable();
+            $table->foreign('id_gudang')->references('id')->on('request_admin');
+            $table->foreign('id_request')->references('id')->on('barang');
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staf');
+        Schema::dropIfExists('respon_staf');
     }
 };

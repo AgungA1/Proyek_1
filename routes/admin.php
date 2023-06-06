@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
+use App\Http\Controllers\RequestAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', function () {
@@ -17,6 +18,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
+  
+    Route::resource('request', RequestAdminController::class);
 })->middleware('auth:admin');
 
 Route::get('/admin/kelola-user', function() {
