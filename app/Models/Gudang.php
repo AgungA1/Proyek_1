@@ -31,7 +31,7 @@ class Gudang extends Model
     }
 
     public function barang(){
-        return $this->belongsToMany(Barang::class, 'barang_gudang', 'id_gudang', 'kode_barang');
+        return $this->belongsToMany(Barang::class, 'barang_gudang', 'id_gudang', 'kode_barang')->withPivot('kuantitas_barang');
     }
 
     public function barang_masuk(){
@@ -40,5 +40,9 @@ class Gudang extends Model
 
     public function barang_keluar(){
         return $this->hasMany(BarangKeluar::class, 'id_gudang');
+    }
+
+    public function request(){
+        return $this->belongsToMany(RequestAdmin::class, 'respon_staf', 'id_gudang', 'id_request')->withPivot('persetujuan', 'kuantitas');
     }
 }
