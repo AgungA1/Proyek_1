@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('staf_gudang', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id_gudang');
             $table->string('username');
             $table->string('nama');
             $table->string('email')->unique();

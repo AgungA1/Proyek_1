@@ -16,17 +16,15 @@ class EstimatorSeeder extends Seeder
      */
     public function run()
     {
-        //
         $data = [
-            [
-                'username' => 'admin',
-                'nama' => 'admin',
-                'email' => 'admin2@admin.com',
-                'no_telp' => '087777777',
-                'password' => Hash::make('password'),
-            ]
+            'username' => 'estimator',
+            'nama' => 'estimator',
+            'email' => 'estimator1@gmail.com',
+            'no_telp' => '0859632921',
+            'avatar' => 'avatar.jpg',
+            'password' => Hash::make('password'),
         ];
 
-        DB::table('admin')->insert($data);
+        DB::table('estimator')->insert($data);
     }
 }
