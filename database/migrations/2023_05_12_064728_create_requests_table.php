@@ -20,9 +20,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_kategori')->nullable();
             $table->string('nama_barang')->nullable();
             $table->integer('kuantitas_barang');
+            $table->date('tanggal');
             $table->string('jenis_request');
             $table->string('status_request');
             $table->string('status_penyelesaian');
+            $table->string('status_persetujuan');
         });
     }
 
