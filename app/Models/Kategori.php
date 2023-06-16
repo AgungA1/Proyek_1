@@ -22,8 +22,9 @@ class Kategori extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'nama_kategori',
-        'deskripsi_barang',
+        'deskripsi_kategori',
     ];
 
     public function barang(){
