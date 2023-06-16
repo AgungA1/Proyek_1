@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             GudangSeeder::class,
             KategoriSeeder::class,
             StafGudangSeeder::class,
-            SupplierSeeder::class,
+            SuplierSeeder::class,
             UserSeeder::class
         ]);
     }
