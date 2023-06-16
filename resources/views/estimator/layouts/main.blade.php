@@ -14,7 +14,7 @@
     @include('estimator.layouts.navbar')
     @include('estimator.layouts.sidebar')
     <!-- Wrapper -->
-    <div class="p-4 sm:ml-64"> 
+    <div class="p-4 sm:ml-64" bg-white min-h-screen h-screen> 
         <!-- Content Warapper -->
         <div class="p-4 mt-14">
             <!-- Content -->

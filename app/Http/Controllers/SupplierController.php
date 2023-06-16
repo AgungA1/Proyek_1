@@ -2,41 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use\App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function dataSupplier(Request $request)
     {
-        $supplier = Supplier::all();
-        $posts = Supplier::orderBy()->paginate();
-        return view('suppliers.index', compact('suppliers'))->with('i', (request()->input('page', 1) - 1) * 5);
+        // $keyword = $request->input('search');
+        
+        // $query = Supplier::query();
+
+        // if ($keyword) {
+        //     $query->where(function ($query) use ($keyword) {
+        //         $query->where('nama_supplier', 'like', "%$keyword%");
+        //     });
+        // }
+
+        // $suppliers = $query->paginate(5);
+        if($request->has('supplier')){
+            $nama_supplier = request('supplier');
+            $suppliers = Supplier::where('nama_supplier', 'LIKE', '%'.$nama_supplier.'%')->paginate(1);
+            return view('admin.supplier', compact('suppliers'));
+        } else{
+            $suppliers = supplier::orderby('id','asc')->paginate(2);
+            return view('admin.supplier', compact('suppliers'));
+        }
+
+        // return view('admin.supplier', compact('suppliers', 'keyword'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('supplier.create');
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             'nama_supplier' => 'required',
@@ -44,64 +39,50 @@ class SupplierController extends Controller
             'no_telp_supplier' => 'required',
         ]);
 
-        Supplier::create($request->all());
+        $supplier = new Supplier();
+        $supplier->nama_supplier = $request->input('nama_supplier');
+        $supplier->alamat_supplier = $request->input('alamat_supplier');
+        $supplier->no_telp_supplier = $request->input('no_telp_supplier');
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier Berhasil Ditambahkan');
+        $supplier->save();
+
+        return redirect()->route('admin.supplier')->with('success', 'Supplier berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $Supplier = Supplier::find($id);
-        return view('supplier.detail', compact('Supplier'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $Supplier = Supplier::find($id);
-        return view('supplier.edit', compact('Supplier'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $supplier = Supplier::find($id);
+
+        if (!$supplier) {
+            return redirect()->route('admin.supplier')->with('error', 'Supplier tidak ditemukan');
+        }
+
         $request->validate([
             'nama_supplier' => 'required',
             'alamat_supplier' => 'required',
             'no_telp_supplier' => 'required',
         ]);
 
-        Supplier::find($id)->update($request->all());
+        $supplier->nama_supplier = $request->input('nama_supplier');
+        $supplier->alamat_supplier = $request->input('alamat_supplier');
+        $supplier->no_telp_supplier = $request->input('no_telp_supplier');
 
-        return redirect()->route('supplier.index')->with('success', 'Mahasiswa Berhasil Diupdate');
+        $supplier->save();
+
+        return redirect()->route('admin.supplier')->with('success', 'Supplier berhasil ditambahkan');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id)
     {
-        Supplier::find($id)->delete();
-        return redirect()->route('supplier.index')-> with('success', 'Supplier Berhasil Dihapus');
+        $supplier = Supplier::find($id);
+
+        if (!$supplier) {
+            return redirect()->route('admin.supplier')->with('error', 'Supplier tidak ditemukan');
+        }
+
+        $supplier->delete();
+
+        return redirect()->route('admin.supplier')->with('success', 'Supplier berhasil dihapus');
     }
 }

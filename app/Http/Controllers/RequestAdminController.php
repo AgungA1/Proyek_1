@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Gudang;
 use App\Models\RequestAdmin;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 
 class RequestAdminController extends Controller
@@ -20,6 +22,7 @@ class RequestAdminController extends Controller
         $kategoris = Kategori::all();
         $barangs = Barang::all();
         $requests = RequestAdmin::where('status_request', 'pending')
+                                ->with('gudang')
                                 ->paginate(10);
         return view('admin.request.request', compact('requests', 'kategoris', 'barangs'));
     }
@@ -46,6 +49,7 @@ class RequestAdminController extends Controller
 
         $request->validate([
             'kuantitas' => 'required',
+            'tanggal' => 'required',
         ]);
         
         if ($request->input('item_type') == 'new') {
@@ -65,9 +69,11 @@ class RequestAdminController extends Controller
         }
         
         $request_admin->kuantitas_barang = $request->get('kuantitas');
+        $request_admin->tanggal = Carbon::createFromFormat('m/d/Y', $request->get('tanggal'))->format('Y-m-d');
         $request_admin->jenis_request = $request->input('request_type');
         $request_admin->status_request = 'pending';
         $request_admin->status_penyelesaian = 'pending';
+        $request_admin->status_persetujuan = 'pending';
 
         $request_admin->save();
 
@@ -105,7 +111,62 @@ class RequestAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request_admin = RequestAdmin::find($id);
+        $partial_responses = $request_admin->gudang()
+                            ->wherePivot('persetujuan', 'partial')
+                            ->orderBy('kuantitas', 'DESC')
+                            ->get();
+        $accept_response = $request_admin->gudang()
+                            ->wherePivot('persetujuan', 'accept')
+                            ->first();
+
+        $request->validate([
+            'persetujuan_admin' => 'required',
+        ]);
+        $request_admin->status_request = $request->input('persetujuan_admin');
+        $request_admin->save();
+
+        if ($request_admin->status_persetujuan == 'diterima') 
+        {
+            $accept_response->pivot->persetujuan_admin = $request->input('persetujuan_admin');
+            $accept_response->pivot->save();
+            return redirect()->route('admin.request.index');
+        } 
+        else if ($request_admin->status_persetujuan == 'diterima sebagian') 
+        {
+            foreach($partial_responses as $partial_response){
+                $partial_response->pivot->persetujuan_admin = $request->input('persetujuan_admin');
+            }
+            $partial_response->pivot->save();
+            return redirect()->route('admin.request.index');
+        } 
+        else if ($request_admin->status_persetujuan == 'gabungan tidak utuh') 
+        {
+            foreach($partial_responses as $partial_response){
+                $partial_response->pivot->persetujuan_admin = $request->input('persetujuan_admin');
+                $partial_response->pivot->save();
+            }
+            return redirect()->route('admin.request.index');
+        }
+        else if ($request_admin->status_persetujuan == 'gabungan utuh') 
+        {
+            $total = 0;
+            foreach($partial_responses as $partial_response){
+                $total += $partial_response->pivot->kuantitas;
+                $partial_response->pivot->persetujuan_admin = $request->input('persetujuan_admin');
+                if ($total > $request_admin->kuantitas_barang) {        
+                    $partial_response->pivot->kuantitas = $partial_response->pivot->kuantitas + ($request_admin->kuantitas_barang - $total);
+                    $partial_response->pivot->save();
+                    break;
+                }
+                if ($total == $request_admin->kuantitas_barang) {        
+                    $partial_response->pivot->save();
+                    break;
+                }
+                $partial_response->pivot->save();
+            }
+            return redirect()->route('admin.request.index');
+        }
     }
 
     /**

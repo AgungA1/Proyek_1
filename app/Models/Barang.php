@@ -45,6 +45,6 @@ class Barang extends Model
     }
 
     public function gudang(){
-        return $this->belongsToMany(Gudang::class, 'barang_gudang', 'kode_barang', 'id_gudang');
+        return $this->belongsToMany(Gudang::class, 'barang_gudang', 'kode_barang', 'id_gudang')->withPivot('kuantitas_barang');
     }
 }
