@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\RequestAdminController;
+use App\HTTp\Controllers\DashboardController;
+use App\Http\Controllers\ReportBarangKeluar;
+use App\Http\Controllers\ReportBarangMasuk;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EstimatorController;
 use App\Http\Controllers\StafGudangController;
@@ -10,9 +14,7 @@ use App\Http\Controllers\GudangController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.layouts.main');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'getCount'])->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -39,6 +41,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::put('/update-estimator/{id}', [EstimatorController::class, 'update'])->name('estimator.update');
     Route::delete('/delete-estimator/{id}', [EstimatorController::class, 'delete'])->name('estimator.delete');
 
+
+Route::get('/admin/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.report');
+
+Route::get('/admin/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.reportBarangMasuk');
+
+Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.reportBarangKeluar');
     // route kelola user:admin
     Route::get('/kelola-user-staf', [StafGudangController::class, 'dataStaf'])->name('staf.kelola-user');
     Route::post('/create-staf', [StafGudangController::class, 'create'])->name('staf.create');

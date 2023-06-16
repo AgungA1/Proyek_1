@@ -13,7 +13,7 @@ class BarangGudang extends Model
      *
      * @var string
      */
-    protected $table = 'barang_masuk';
+    protected $table = 'barang_gudang';
     public $timestamps = false;
 
     /**
@@ -26,4 +26,12 @@ class BarangGudang extends Model
         'kode_barang',
         'kuantitas_barang',
     ];
+
+    public function barang(){
+        return $this->belongsTo(Barang::class, 'kode_barang');
+    }
+
+    public function gudang(){
+        return $this->belongsTo(Gudang::class, 'id_gudang');
+    }
 }
