@@ -18,9 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_gudang');
             $table->unsignedBigInteger('id_request');
             $table->string('persetujuan');
+            $table->string('persetujuan_admin')->nullable();
             $table->integer('kuantitas')->nullable();
-            $table->foreign('id_gudang')->references('id')->on('request_admin');
-            $table->foreign('id_request')->references('id')->on('barang');
+            $table->foreign('id_gudang')->references('id')->on('gudang');
+            $table->foreign('id_request')->references('id')->on('request_admin');
         });
     }
 

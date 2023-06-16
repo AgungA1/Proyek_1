@@ -16,12 +16,12 @@
     @include('admin.layouts.navbar')
     @include('admin.layouts.sidebar')
     <!-- Wrapper -->
-    <div class="p-4 sm:ml-64 bg-white h-screen">
+    <div class="p-4 sm:ml-64 bg-white min-h-screen h-max"> 
         <!-- Content Warapper -->
         <div class="p-4 mt-14">
             <!-- Content -->
-            @yield('content')
             @yield('script')
+            @yield('content')
         </div>
     </div>
 </body>

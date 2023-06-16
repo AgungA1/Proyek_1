@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ResponStafController;
 use App\Http\Controllers\StafAuth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,5 @@ Route::group(['prefix' => 'staf', 'as' => 'staf.'], function(){
 Route::group(['prefix' => 'staf', 'as' => 'staf.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    Route::resource('response', ResponStafController::class);
 })->middleware('auth:staf_gudang');
