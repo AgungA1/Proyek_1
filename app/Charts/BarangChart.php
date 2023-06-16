@@ -14,21 +14,22 @@ class BarangChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build()
     {
-        $barang = Barang::groupBy('id_kategori')->get();
+        $barang = Barang::get();
         $data = [
             $barang->where('id_kategori',1)->count(),
             $barang->where('id_kategori',2)->count(),
+            $barang->where('id_kategori',3)->count(),
         ];
         $label = [
-            'Kategori 1',
-            'Kategori 2',
-            'Kategori 3',
+            'Kaca',
+            'Lampu',
+            'Paku',
         ];
-        return $this->chart->PieChart()
-            ->setTitle('Sales during 2021.')
-            ->setSubtitle('Physical sales vs Digital sales.')
+        return $this->chart->donutChart()
+            ->setTitle('Kategori Barang Seluruh Gudang')
+            ->setSubtitle('Jumlah Barang per Kategori')
             ->addData($data)
             ->setLabels($label);
     }

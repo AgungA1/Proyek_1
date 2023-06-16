@@ -31,7 +31,7 @@ class Gudang extends Model
     }
 
     public function barang(){
-        return $this->belongsToMany(Barang::class, 'barang_gudang', 'id_gudang', 'kode_barang');
+        return $this->belongsToMany(Barang::class, 'barang_gudang', 'kode_barang', 'id_gudang');
     }
 
     public function barang_masuk(){
