@@ -24,14 +24,20 @@ class RequestAdmin extends Model
     protected $fillable = [
         'kode_barang',
         'id_kategori',
+        'tanggal',
         'nama_barang',
         'kuantitas_barang',
         'jenis_request',
         'status_request',
         'status_penyelesaian',
+        'status_persetujuan',
     ];
 
     public function barang(){
         return $this->belongsTo(Barang::class, 'kode_barang');
+    }
+
+    public function gudang(){
+        return $this->belongsToMany(Gudang::class, 'respon_staf', 'id_request', 'id_gudang')->withPivot('persetujuan', 'kuantitas', 'persetujuan_admin');
     }
 }
