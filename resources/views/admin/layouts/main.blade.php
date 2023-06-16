@@ -19,8 +19,8 @@
         <!-- Content Warapper -->
         <div class="p-4 mt-14">
             <!-- Content -->
-            @yield('content')
             @yield('script')
+            @yield('content')
         </div>
     </div>
 </body>
