@@ -9,27 +9,8 @@ class SupplierController extends Controller
 {
     public function dataSupplier(Request $request)
     {
-        // $keyword = $request->input('search');
-        
-        // $query = Supplier::query();
-
-        // if ($keyword) {
-        //     $query->where(function ($query) use ($keyword) {
-        //         $query->where('nama_supplier', 'like', "%$keyword%");
-        //     });
-        // }
-
-        // $suppliers = $query->paginate(5);
-        if($request->has('supplier')){
-            $nama_supplier = request('supplier');
-            $suppliers = Supplier::where('nama_supplier', 'LIKE', '%'.$nama_supplier.'%')->paginate(1);
-            return view('admin.supplier', compact('suppliers'));
-        } else{
-            $suppliers = supplier::orderby('id','asc')->paginate(2);
-            return view('admin.supplier', compact('suppliers'));
-        }
-
-        // return view('admin.supplier', compact('suppliers', 'keyword'));
+        $suppliers = supplier::orderby('id','asc')->paginate(5);
+        return view('admin.supplier', compact('suppliers'));
     }
     public function create(Request $request)
     {

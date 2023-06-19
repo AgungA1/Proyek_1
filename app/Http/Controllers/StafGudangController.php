@@ -12,18 +12,9 @@ class StafGudangController extends Controller
 {
     public function dataStaf(Request $request)
     {
-        if($request->has('search')){
-            $keyword = request('search');
-            $stafs = StafGudang::where('username', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('nama', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('email', 'LIKE', '%'.$keyword.'%')
-            ->paginate(5);
-            return view('admin.kelola-user.staf', compact('stafs'));
-        } else{
-            $gudangs = Gudang::all();
-            $stafs = StafGudang::orderby('id','asc')->paginate(5);
-            return view('admin.kelola-user.staf', compact('stafs','gudangs'));
-        }
+        $gudangs = Gudang::all();
+        $stafs = StafGudang::orderby('id','asc')->paginate(5);
+        return view('admin.kelola-user.staf', compact('stafs','gudangs'));
     }
     public function create(Request $request)
     {

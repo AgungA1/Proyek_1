@@ -10,28 +10,9 @@ class GudangController extends Controller
 {
     public function dataGudang(Request $request)
     {
-        // $keyword = $request->input('search'); 
-        
-        // $query = Gudang::query();
+        $gudangs = Gudang::orderby('id','asc')->paginate(5);
+        return view('admin.gudang', compact('gudangs'));
 
-        // if ($keyword) {
-        //     $query->where(function ($query) use ($keyword) {
-        //         $query->where('nama_gudang', 'like', "%$keyword%");
-        //     });
-        // }
-
-        // $gudangs = $query->paginate(1);
-
-        if($request->has('gudang')){
-            $nama_gudang = request('gudang');
-            $gudangs = Gudang::where('nama_gudang', 'LIKE', '%'.$nama_gudang.'%')->paginate(1);
-            return view('admin.gudang', compact('gudangs'));
-        } else{
-            $gudangs = Gudang::orderby('id','asc')->paginate(4);
-            return view('admin.gudang', compact('gudangs'));
-        }
-
-        
     }
     public function create(Request $request)
     {
@@ -83,6 +64,6 @@ class GudangController extends Controller
 
         return redirect()->route('admin.gudang')->with('success', 'Gudang berhasil dihapus');
 
-        
+
     }
 }

@@ -3,7 +3,6 @@
     "",
     "\\app",
     "\\app\\Http",
-    "\\app\\Http\\Controllers\\Auth",
     "\\resources",
     "\\resources\\views",
     "\\routes"

@@ -11,18 +11,8 @@ class AdminController extends Controller
 {
     public function dataAdmin(Request $request)
     {
-        if($request->has('search')){
-            $keyword = request('search');
-            $admins = Admin::where('username', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('nama', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('email', 'LIKE', '%'.$keyword.'%')
-            ->paginate(5);
-            return view('admin.kelola-user.admin', compact('admins'));
-        } else{
-            $admins = Admin::orderby('id','asc')->paginate(5);
-            return view('admin.kelola-user.admin', compact('admins'));
-        }
-
+        $admins = Admin::orderby('id','asc')->paginate(5);
+        return view('admin.kelola-user.admin', compact('admins'));
     }
     public function create(Request $request)
     {
