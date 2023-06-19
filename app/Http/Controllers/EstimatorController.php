@@ -12,17 +12,8 @@ class EstimatorController extends Controller
 {
     public function dataEstimator(Request $request)
     {
-        if($request->has('search')){
-            $keyword = request('search');
-            $estimators = Estimator::where('username', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('nama', 'LIKE', '%'.$keyword.'%')
-            ->orWhere('email', 'LIKE', '%'.$keyword.'%')
-            ->paginate(5);
-            return view('admin.kelola-user.estimator', compact('estimators'));
-        } else{
-            $estimators = Estimator::orderby('id','asc')->paginate(5);
-            return view('admin.kelola-user.estimator', compact('estimators'));
-        }
+        $estimators = Estimator::orderby('id','asc')->paginate(5);
+        return view('admin.kelola-user.estimator', compact('estimators'));
     }
     public function create(Request $request)
     {

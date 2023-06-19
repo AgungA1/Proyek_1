@@ -9,14 +9,8 @@ class KategoriController extends Controller
 {
     public function dataKategori(Request $request)
     {
-        if($request->has('search')){
-            $nama_kategori = request('search');
-            $kategoris = Kategori::where('nama_kategori', 'LIKE', '%'.$nama_kategori.'%')->paginate(1);
-            return view('admin.kategori', compact('kategoris'));
-        } else{
-            $kategoris = Kategori::orderby('id','asc')->paginate(4);
-            return view('admin.kategori', compact('kategoris'));
-        }
+        $kategoris = Kategori::orderby('id','asc')->paginate(5);
+        return view('admin.kategori', compact('kategoris'));
     }
     public function create(Request $request)
     {

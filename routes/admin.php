@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 })->middleware('guest:admin');
-    
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
@@ -41,13 +41,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::put('/update-estimator/{id}', [EstimatorController::class, 'update'])->name('estimator.update');
     Route::delete('/delete-estimator/{id}', [EstimatorController::class, 'delete'])->name('estimator.delete');
 
+    Route::get('/admin/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('report');
 
-Route::get('/admin/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.report');
+    Route::get('/admin/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangMasuk');
 
-Route::get('/admin/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.reportBarangMasuk');
-
-Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('admin.reportBarangKeluar');
-    // route kelola user:admin
+    Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangKeluar');
+    // route kelola user:staf
     Route::get('/kelola-user-staf', [StafGudangController::class, 'dataStaf'])->name('staf.kelola-user');
     Route::post('/create-staf', [StafGudangController::class, 'create'])->name('staf.create');
     Route::put('/update-staf/{id}', [StafGudangController::class, 'update'])->name('staf.update');
@@ -57,7 +56,7 @@ Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->m
     Route::post('/create-kategori', [KategoriController::class, 'create'])->name('create-kategori');
     Route::put('/update-kategori/{id}', [KategoriController::class, 'update'])->name('update-kategori');
     Route::delete('/delete-kategori/{id}', [KategoriController::class, 'delete'])->name('delete-kategori');
- 
+
     // route gudang
     Route::get('/gudang',[GudangController::class, 'dataGudang'])->name('gudang');
     Route::post('/create-gudang', [GudangController::class, 'create'])->name('create-gudang');

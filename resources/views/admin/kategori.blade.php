@@ -3,23 +3,20 @@
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
         <div class="flex items-center pb-4 bg-white dark:bg-gray-900 m-5">
-            <form action="{{ route('admin.kategori') }}" method="GET">
-                @csrf
-                <label for="table-search" class="sr-only">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <input type="text" id="search" name="search"
-                        class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for kategori">
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
                 </div>
-            </form>
+                <input type="text" id="search" name="search"
+                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search for kategori">
+            </div>
             <!-- Modal toggle -->
             <div class="flex justify-center m-5 ">
                 <button id="defaultModalButton" data-modal-toggle="defaultModal"
@@ -116,7 +113,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @foreach ($kategoris as $kategori)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
@@ -133,12 +130,12 @@
                                     <!-- Modal toggle -->
                                     <div>
                                         <button id="updateKategoriButton-{{ $kategori->id }}" data-modal-toggle="updateKategoriModal-{{ $kategori->id }}"
-                                            class="block text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                            class="edit-button block text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                             type="button">
                                             Edit Kategori
                                         </button>
                                     </div>
-        
+
                                     <!-- Main modal -->
                                     <div id="updateKategoriModal-{{ $kategori->id }}" tabindex="-1" aria-hidden="true"
                                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -152,7 +149,7 @@
                                                         Edit Kategori
                                                     </h3>
                                                     <button type="button"
-                                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        class="close-modal text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                                         data-modal-toggle="updateKategoriModal-{{ $kategori->id }}">
                                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor"
                                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -194,16 +191,16 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </form>                                                
+                                                </form>
                                             </div>
                                         </div>
-                                    </div>                        
+                                    </div>
                                     <form action="{{ route('admin.delete-kategori', $kategori->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div>
                                             <button type="submit"
-                                                class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                                class="delete-button text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                                                 <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor"
                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd"
@@ -218,7 +215,7 @@
                             </td>
                         </tr>
                     @endforeach
-                
+
                 </tbody>
             </table>
             {{$kategoris->links()}}
@@ -233,5 +230,66 @@
             document.getElementById('defaultModalButton').click();
         });
 
+        //script for live search and activate form action
+        $(document).ready(function() {
+            var allRows = $('table tbody tr');
+            var originalData = allRows.clone();
+
+            $('#search').on('input', function() {
+                var searchText = $(this).val().toLowerCase();
+                var filteredRows = originalData.clone();
+
+                filteredRows = filteredRows.filter(function() {
+                    var rowText = $(this).text().toLowerCase();
+                    return rowText.includes(searchText);
+                });
+
+                if (filteredRows.length > 0) {
+                    $('table tbody').empty().append(filteredRows);
+                    $('#tableBody').show();
+                } else {
+                    var noResultsRow = '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
+                    noResultsRow += '<td colspan="5" class="px-6 py-4 text-center">No results found.</td>';
+                    noResultsRow += '</tr>';
+                    $('table tbody').empty().append(noResultsRow);
+                    $('#tableBody').show();
+                }
+
+                activateActionButtons();
+            });
+
+            $('#search').on('keyup', function(event) {
+                if (event.keyCode === 8 && $(this).val() === '') {
+                    $('table tbody').empty().append(originalData);
+                    $('#tableBody').show();
+                    $('#noResults').hide();
+
+                    activateActionButtons();
+                }
+            });
+
+            function activateActionButtons() {
+                $('.edit-button').on('click', function() {
+                    var modalId = $(this).data('modal-toggle');
+                    $('#' + modalId).toggleClass('hidden');
+                });
+
+                $('.delete-button').on('click', function() {
+                    var modalId = $(this).data('modal-toggle');
+                    $('#' + modalId).toggleClass('hidden');
+                });
+
+                const closeButtons = document.querySelectorAll('.close-modal');
+
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const modalId = button.dataset.modalToggle;
+                        const modal = document.getElementById(modalId);
+
+                        modal.classList.add('hidden');
+                    });
+                })
+            }
+        });
     </script>
 @endsection
