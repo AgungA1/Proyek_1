@@ -41,12 +41,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('/update-estimator/{id}', [EstimatorController::class, 'update'])->name('estimator.update');
     Route::delete('/delete-estimator/{id}', [EstimatorController::class, 'delete'])->name('estimator.delete');
 
+    //route Report
+    Route::get('/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('report');
 
-    Route::get('/admin/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('report');
+    Route::get('/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangMasuk');
 
-    Route::get('/admin/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangMasuk');
+    Route::get('/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangKeluar');
 
-    Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangKeluar');
+    Route::get('/baranggudang/cetak_pdf/{id}', [ReportController::class, 'cetak'])->name('cetakReport');
+
+    Route::get('/barangkeluar/cetak_pdf/{id}', [ReportBarangKeluar::class, 'cetak'])->name('cetakBarangKeluarReport');
+
+    Route::get('/barangmasuk/cetak_pdf/{id}', [ReportBarangMasuk::class, 'cetak'])->name('cetakBarangMasukReport');
+
+
+
     // route kelola user:admin
     Route::get('/kelola-user-staf', [StafGudangController::class, 'dataStaf'])->name('staf.kelola-user');
     Route::post('/create-staf', [StafGudangController::class, 'create'])->name('staf.create');

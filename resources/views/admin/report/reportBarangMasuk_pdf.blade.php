@@ -18,10 +18,10 @@
         </thead>
         <tbody>
                 <tr>
-                    <td>{{$barangGudang->id}}</td>
-                    <td>{{$barangGudang->barang->nama_barang}}</td>
-                    <td>{{$barangGudang->gudang->nama_gudang}}</td>
-                    <td>{{$barangGudang->kuantitas_barang}}</td>
+                    <td>{{$barangMasuk->id}}</td>
+                    <td>{{$barangMasuk->barang->nama_barang}}</td>
+                    <td>{{$barangMasuk->gudang->nama_gudang}}</td>
+                    <td>{{$barangMasuk->kuantitas_barang}}</td>
                 </tr>
         </tbody>
     </table>
