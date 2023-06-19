@@ -14,7 +14,9 @@ class ReportBarangMasuk extends Controller
         return view('admin.report.reportBarangMasuk', ['barangMasuk'=>$barangMasuk]);
     }
 
-    public function cetak(){
-
+    public function cetak($id){
+        $barangMasuk = BarangMasuk::find($id);
+        $pdf = PDF::loadView('admin.report.reportBarangMasuk_pdf',['barangMasuk'=>$barangMasuk]);
+        return $pdf->stream();
     }
 }
