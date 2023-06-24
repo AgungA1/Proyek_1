@@ -41,10 +41,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function getData(Request $request){
-
-    }
-
     public function getCountBarang(){
         $barangs = BarangGudang::all();
     }

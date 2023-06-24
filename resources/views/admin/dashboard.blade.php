@@ -9,7 +9,7 @@
     </div>
     {{-- Card Info, Href ke view lain --}}
     <div class="grid gap-10 mt-5 grid-cols-4">
-        <a href="#"
+        <a href="{{route('admin.gudang')}}"
             class="block max-w-sm p-6 bg-blue-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div class="flex">
                 <div class="pt-5"><i class="fa-solid fa-warehouse fa-2xl" style="color: #000000;"></i></div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </a>
-        <a href="#"
+        <a href="{{route('admin.staf.kelola-user')}}"
             class="block max-w-sm p-6 bg-blue-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div class="flex">
                 <div class="pt-5"><i class="fa-solid fa-users fa-2xl" style="color: #000000;"></i></div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </a>
-        <a href="#"
+        <a href="{{route('admin.estimator.kelola-user')}}"
             class="block max-w-sm p-6 bg-blue-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div class="flex">
                 <div class="pt-5"><i class="fa-solid fa-calculator fa-2xl" style="color: #000000;"></i></div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </a>
-        <a href="#"
+        <a href="{{route('admin.supplier')}}"
             class="block max-w-sm p-6 bg-blue-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div class="flex">
                 <div class="pt-5"><i class="fa-solid fa-cart-flatbed fa-2xl" style="color: #000000;"></i></div>
