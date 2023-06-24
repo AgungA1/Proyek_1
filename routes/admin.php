@@ -64,11 +64,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::put('/update-supplier/{id}', [SupplierController::class, 'update'])->name('update-supplier');
     Route::delete('/delete-supplier/{id}', [SupplierController::class, 'delete'])->name('delete-supplier');
 
-    Route::get('/admin/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('report');
-
-    Route::get('/admin/reportBarangMasuk', [ReportBarangMasuk::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangMasuk');
-
-    Route::get('/admin/reportBarangKeluar', [ReportBarangKeluar::class, 'index'])->middleware('auth:admin', 'verified')->name('reportBarangKeluar');
     //route Report
     Route::get('/report', [ReportController::class, 'index'])->middleware('auth:admin', 'verified')->name('report');
 
