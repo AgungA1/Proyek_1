@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('/create-estimator', [EstimatorController::class, 'create'])->name('estimator.create');
     Route::put('/update-estimator/{id}', [EstimatorController::class, 'update'])->name('estimator.update');
     Route::delete('/delete-estimator/{id}', [EstimatorController::class, 'delete'])->name('estimator.delete');
-  
+
     // route kelola user:staf
     Route::get('/kelola-user-staf', [StafGudangController::class, 'dataStaf'])->name('staf.kelola-user');
     Route::post('/create-staf', [StafGudangController::class, 'create'])->name('staf.create');
