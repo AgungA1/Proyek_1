@@ -1,11 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     daisyui: {
         themes: [
           {
-            
+
             mytheme: {
 
                 "primary": "#063777",
@@ -45,6 +46,9 @@ module.exports = {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        colors:{
+            'gray':colors.gray,
+        }
     },
 
     plugins: [

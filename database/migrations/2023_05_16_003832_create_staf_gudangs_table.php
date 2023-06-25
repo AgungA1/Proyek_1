@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('staf_gudang', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id_gudang');
             $table->string('username');
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('no_telp');
-            $table->string('avatar')->default('default.png');
+            $table->string('avatar')->default('avatars/default.png');
             $table->string('password');
             $table->rememberToken();
         });

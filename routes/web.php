@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,15 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/chart', [BarangController::class, 'index']);
+
 require __DIR__.'/auth.php';
-
-Route::get('/navadmin', function(){
-    return view('admin.layouts.main');
-});
-
-Route::get('/navglobal', function(){
-    return view('layouts.main');
-});
 
 require __DIR__.'/auth.php';
 
@@ -45,3 +40,4 @@ require __DIR__.'/admin.php';
 require __DIR__.'/estimator.php';
 
 require __DIR__.'/staf.php';
+
