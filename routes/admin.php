@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\RequestAdminController;
+use App\Http\Controllers\RequestEstimatorController;
 use App\HTTp\Controllers\DashboardController;
 use App\Http\Controllers\ReportBarangKeluar;
 use App\Http\Controllers\ReportBarangMasuk;
@@ -28,6 +29,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         ->name('logout');
 
     Route::resource('request', RequestAdminController::class);
+    
+    Route::get('response', [RequestEstimatorController::class, 'response_index'])
+                ->name('response');
+
+    Route::get('upcoming-item-transfers', [RequestAdminController::class, 'admin_accepted_index'])
+                ->name('upcoming');
+
+    Route::get('note', [RequestEstimatorController::class, 'admin_accepted_index'])
+                ->name('note');
 
     // route kelola user:admin
     Route::get('/kelola-user', [AdminController::class, 'dataAdmin'])->name('kelola-user');

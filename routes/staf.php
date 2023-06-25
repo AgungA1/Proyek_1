@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RequestAdminController;
 use App\Http\Controllers\DashboardStafController;
 use App\Http\Controllers\ReportStafBarangMasuk;
 use App\Http\Controllers\ReportStafBarangKeluar;
@@ -19,8 +20,12 @@ Route::group(['prefix' => 'staf', 'as' => 'staf.'], function(){
 Route::group(['prefix' => 'staf', 'as' => 'staf.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    
     Route::resource('response', ResponStafController::class);
 
+    Route::get('upcoming-item-transfers', [RequestAdminController::class, 'staf_accepted_index'])
+                ->name('upcoming');
+  
     Route::get('/reportBarangMasuk', [ReportStafBarangMasuk::class, 'index'])->name('reportBarangMasuk');
 
     Route::get('/reportBarangKeluar', [ReportStafBarangKeluar::class, 'index'])->name('reportBarangKeluar');

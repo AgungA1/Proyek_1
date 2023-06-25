@@ -40,4 +40,8 @@ class RequestAdmin extends Model
     public function gudang(){
         return $this->belongsToMany(Gudang::class, 'respon_staf', 'id_request', 'id_gudang')->withPivot('persetujuan', 'kuantitas', 'persetujuan_admin');
     }
+
+    public function response(){
+        return $this->hasMany(ResponStaf::class, 'id_request');
+    }
 }
