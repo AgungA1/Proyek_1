@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EstimatorAuth\AuthenticatedSessionController;
+use App\Http\Controllers\RequestEstimatorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/estimator/dashboard', function () {
@@ -17,4 +18,6 @@ Route::group(['prefix' => 'estimator', 'as' => 'estimator.'], function(){
 Route::group(['prefix' => 'estimator', 'as' => 'estimator.'], function(){
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    
+    Route::resource('request', RequestEstimatorController::class);
 })->middleware('auth:estimator');

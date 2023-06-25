@@ -17,13 +17,19 @@ class ResponStafController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $search)
     {
         $id_gudang = Auth::guard('staf_gudang')->user()->id_gudang;
         $requests = RequestAdmin::all();
         $responses = ResponStaf::where('id_gudang', $id_gudang)
                                 ->whereIn('id_request', $requests->pluck('id')->toArray());
         $requests = RequestAdmin::whereNotIn('id', $responses->pluck('id_request')->toArray())
+                                ->where(function ($query) use ($search) {
+                                    if (($keyword = $search->keyword)) {
+                                        $query->orWhere('jenis_request', 'LIKE', '%'.$keyword.'%')
+                                                ->orWhere('nama_barang', 'LIKE', '%'.$keyword.'%');
+                                    }
+                                })
                                 ->paginate(10);
         $barangs = Barang::all();
         return view('staf.response', compact('requests', 'barangs'));
@@ -69,7 +75,12 @@ class ResponStafController extends Controller
 
         // pelabelan request sesuai dengan respon dari staf gudang
         $this->updateRequest($request, $respon_staf->id_request);
-        return redirect()->route('staf.response.index');
+
+        if ($request->persetujuan == 'decline') {
+            return redirect()->route('staf.response.index')->with('delete', 'Admin`s request has been declined.');
+        } else {
+            return redirect()->route('staf.response.index')->with('positive', 'Admin`s request has been accepted.');
+        }
     }
 
     /**

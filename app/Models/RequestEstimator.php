@@ -13,7 +13,7 @@ class RequestEstimator extends Model
      *
      * @var string
      */
-    protected $table = 'request_estimator';
+    protected $table = 'request_estimators';
     public $timestamps = false;
 
     /**

@@ -27,4 +27,8 @@ class ResponStaf extends Model
         'persetujuan',
         'kuantitas',
     ];
+
+    public function gudang(){
+        return $this->belongsTo(Gudang::class, 'id_gudang');
+    }
 }

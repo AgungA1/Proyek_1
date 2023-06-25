@@ -13,7 +13,7 @@ class BarangGudang extends Model
      *
      * @var string
      */
-    protected $table = 'barang_masuk';
+    protected $table = 'barang_gudang';
     public $timestamps = false;
 
     /**
